@@ -3,18 +3,18 @@ A simple Telegram bot that displays **real-time cryptocurrency prices**. Users c
 
 # Features
 - Displays live prices of top cryptocurrencies
-- Build with telbot **[pyTelegramBotAPI (telebot)](https://github.com/eternnoir/pyTelegramBotAPI)
+- Build with telbot **[pyTelegramBotAPI (telebot)](https://github.com/eternnoir/pyTelegramBotAPI)**
 - Optional proxy support for better Telegram connectivity.
 
 # Run locally
 1. Clone this repository.
 2. Install dependencies
-   '
+   `
    pip install -r requirements.txt
-   '
+   `
 3. Create a '.env' file in the root directory with your own telegram bot token and if you use proxy, include it as well:
-   'BOT_TOKEN='your_bot_token''
-   'PROXY='your_proxy''
+   ` BOT_TOKEN='your_bot_token' `
+   ` PROXY='your_proxy' `
 4. Run the bot:
    'Python crypto_bot.py'
    
