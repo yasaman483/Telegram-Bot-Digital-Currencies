@@ -9,7 +9,7 @@ import logging
 bot = create_bot()
 app = FastAPI()
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s - %(levelname) - %(message)')
 
 @app.post("/api/webhook")
@@ -37,5 +37,6 @@ async def telegram_webhook(request: Request):
     else:
         loop = asyncio.get_event_loop()
         loop.run_in_executor(None, bot.process_new_updates, [update])
+    logging.info('Connected to the Telegram')
 
     return JSONResponse(content={'ok': True})

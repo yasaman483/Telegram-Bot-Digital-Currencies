@@ -1,3 +1,5 @@
+import logging
+
 import telebot
 from config import proxy
 from telebot import asyncio_helper
@@ -22,6 +24,7 @@ def register(bot, currencies):
         Start the bot with /start in telegram.
         :param message:
         """
+        logging.info('Bot started...')
         await bot.reply_to(message, 'Hello, Hope you have a great day!')
         await make_markup(message.chat.id)
 
@@ -32,5 +35,6 @@ def register(bot, currencies):
         Help with bot with /help in telegram.
         :param message:
         """
+        logging.info('Helping with bot...')
         await bot.reply_to(message, 'This bot helps you to find out the current amount of Digital currencies.')
         await make_markup(message.chat.id)

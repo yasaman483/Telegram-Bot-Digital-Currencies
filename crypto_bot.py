@@ -9,7 +9,7 @@ from handlers import default_handlers, currency_handlers
 
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
@@ -67,8 +67,10 @@ def create_bot():
     """
     try:
         bot = AsyncTeleBot(token)
+        logging.info(f'Bot created with token.')
         default_handlers.register(bot, currencies)
         currency_handlers.register(bot, currencies)
+        logging.info('Registers activate.')
         return bot
     except Exception as e:
         logging.error(f'Exception: {e}')

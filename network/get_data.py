@@ -11,7 +11,7 @@ data = None
 session = None
 
 logging.basicConfig(
-    level=logging.DEBUG,
+    level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
@@ -36,6 +36,7 @@ async def get_data():
                 return None
             data = await response.json()
             fetch_time = time.time()
+            logging.info('Data created.')
             return data
     except RuntimeError as e:
         logging.error(f'Find runtime error: {e}')
