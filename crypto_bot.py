@@ -2,7 +2,9 @@ import logging
 from config import token
 from telebot.async_telebot import AsyncTeleBot
 import asyncio
-asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+import platform
+if platform.system() == 'windows':
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 from handlers import default_handlers, currency_handlers
 
 
