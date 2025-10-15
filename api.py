@@ -9,7 +9,6 @@ import logging
 bot = create_bot()
 app = FastAPI()
 logging.basicConfig(
-    filename='logs.log',
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname) - %(message)')
 

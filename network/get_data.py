@@ -11,7 +11,6 @@ data = None
 session = None
 
 logging.basicConfig(
-    filename='logs.log',
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )

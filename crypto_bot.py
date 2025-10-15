@@ -9,7 +9,6 @@ from handlers import default_handlers, currency_handlers
 
 
 logging.basicConfig(
-    filename='logs.log',
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
