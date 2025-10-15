@@ -12,7 +12,7 @@ logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(levelname) - %(message)')
 
-@app.post("/")
+@app.post("/api/webhook")
 async def telegram_webhook(request: Request):
     try:
         data = await request.json()
