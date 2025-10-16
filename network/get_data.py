@@ -10,10 +10,7 @@ fetch_time = 0
 data = None
 session = None
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
+logger = logging.getLogger(__name__)
 
 async def get_data():
     """
@@ -32,14 +29,14 @@ async def get_data():
 
         async with session.get(URL) as response:
             if response.status != 200:
-                logging.error(f'Get bad response with {response.status} status.')
+                logger.error(f'Get bad response with {response.status} status.')
                 return None
             data = await response.json()
             fetch_time = time.time()
-            logging.info('Data created.')
+            logger.info('Data created.')
             return data
     except RuntimeError as e:
-        logging.error(f'Find runtime error: {e}')
+        logger.error(f'Find runtime error: {e}')
     except Exception as e:
-        logging.error(f'Find an error while fetching datas: {e}')
+        logger.error(f'Find an error while fetching datas: {e}')
         return None

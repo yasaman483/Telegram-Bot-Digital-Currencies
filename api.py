@@ -1,4 +1,5 @@
 import asyncio
+import sys
 import inspect
 import telebot
 from fastapi import FastAPI, Request, HTTPException
@@ -6,11 +7,16 @@ from fastapi.responses import JSONResponse
 from crypto_bot import create_bot
 import logging
 
-bot = create_bot()
-app = FastAPI()
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname) - %(message)')
+    format='%(asctime)s - %(levelname) - %(message)',
+    handlers=[logging.StreamHandler(sys.stdout)]
+)
+
+logging.info('Bot called to create.')
+bot = create_bot()
+app = FastAPI()
+
 
 @app.post("/api/webhook")
 async def telegram_webhook(request: Request):

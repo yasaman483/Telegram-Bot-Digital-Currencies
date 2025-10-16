@@ -7,12 +7,7 @@ if platform.system() == 'windows':
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 from handlers import default_handlers, currency_handlers
 
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
+logger = logging.getLogger(__name__)
 
 currencies = {'Bitcoin': 'BTC',
               'Litecoin': 'LTC',
@@ -67,13 +62,13 @@ def create_bot():
     """
     try:
         bot = AsyncTeleBot(token)
-        logging.info(f'Bot created with token.')
+        logger.info(f'Bot created with token.')
         default_handlers.register(bot, currencies)
         currency_handlers.register(bot, currencies)
-        logging.info('Registers activate.')
+        logger.info('Registers activate.')
         return bot
     except Exception as e:
-        logging.error(f'Exception: {e}')
+        logger.error(f'Exception: {e}')
 
 
 async def main():
