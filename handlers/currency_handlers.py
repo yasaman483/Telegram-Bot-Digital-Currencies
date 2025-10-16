@@ -37,7 +37,7 @@ def register(bot, currencies):
         data = await get_data()
 
         if data:
-            pairs = [pair for pair in data if symbol + 'USDT' == pair['symbol']]
+            pairs = [pair for pair in data if symbol.lower() == pair['symbol'].lower()]
         else:
             await bot.reply_to(message, "Can't fetch your data, please try again later.")
             return None
@@ -47,5 +47,5 @@ def register(bot, currencies):
             await make_markup(message)
             return None
 
-        result = '\n'.join([f'{pair["symbol"]}: {pair["price"]}' for pair in pairs])
+        result = '\n'.join([f'💰{pair["symbol"].upper()} -> {pair.get("current_price", "N/A")}' for pair in pairs])
         await bot.reply_to(message, result)
