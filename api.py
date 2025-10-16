@@ -20,7 +20,7 @@ app = FastAPI()
 async def telegram_webhook(request: Request):
     try:
         data = await request.json()
-        logging.info(f'{data} received.')
+        logging.info('datas received.')
     except Exception as e:
         logging.exception(f'Invalid json request: {e}')
         raise HTTPException(status_code=400, detail='Invalid Json')

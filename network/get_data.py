@@ -24,7 +24,11 @@ async def get_data():
     try:
         global session
         if not session:
-            connector = ProxyConnector.from_url(proxy)
+            if proxy:
+                connector = ProxyConnector.from_url(proxy)
+            else:
+                connector = aiohttp.TCPConnector(ssl=False)
+
             session = aiohttp.ClientSession(connector=connector)
 
         async with session.get(URL) as response:
