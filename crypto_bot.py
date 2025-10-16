@@ -69,15 +69,3 @@ def create_bot():
         return bot
     except Exception as e:
         logger.error(f'Exception: {e}')
-
-
-async def main():
-    """
-    Start the bot.
-    """
-    bot = create_bot()
-    await bot.infinity_polling()
-
-
-if __name__ == "__main__":
-    asyncio.run(main())

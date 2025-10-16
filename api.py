@@ -1,6 +1,4 @@
-import asyncio
 import sys
-import inspect
 import telebot
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
@@ -22,27 +20,17 @@ app = FastAPI()
 async def telegram_webhook(request: Request):
     try:
         data = await request.json()
+        logging.info(f'{data} received.')
     except Exception as e:
         logging.exception(f'Invalid json request: {e}')
         raise HTTPException(status_code=400, detail='Invalid Json')
 
     try:
         update = telebot.types.Update.de_json(data)
+        bot.process_new_updates([update])
+        logging.info('Update processed.')
     except Exception as e:
         logging.exception(f'Invalid Telegram update json: {e}')
-        raise HTTPException(status_code=400, detail=f'Invalid Telegram update: {e}')
-
-    try:
-        proc = bot.process_new_updates([update])
-    except Exception as e:
-        logging.exception(f'Error calling process_new_updates: {e}')
-        raise HTTPException(status_code=500, detail=f'Bot processing error: {e}')
-
-    if inspect.isawaitable(proc):
-        asyncio.ensure_future(proc)
-    else:
-        loop = asyncio.get_event_loop()
-        loop.run_in_executor(None, bot.process_new_updates, [update])
-    logging.info('Connected to the Telegram')
+        raise HTTPException(status_code=500, detail=f'Bot processing error.')
 
     return JSONResponse(content={'ok': True})
