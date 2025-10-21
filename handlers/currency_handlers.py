@@ -47,5 +47,5 @@ def register(bot, currencies):
             await make_markup(message)
             return None
 
-        result = '\n'.join([f'💰{pair["symbol"].upper()} -> {pair.get("current_price", "N/A")}' for pair in pairs])
+        result = '\n'.join([f'💰{pair["symbol"].upper()} -> ${pair.get("current_price", "N/A")}'.rstrip('0').rstrip('.') for pair in pairs])
         await bot.reply_to(message, result)
