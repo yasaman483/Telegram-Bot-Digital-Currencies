@@ -19,6 +19,7 @@ PROXY=your_proxy_if_needed
 ```   
 Note:
 If you are using a proxy, it helps the bot to connect to Telegram servers more reliably (specially if Telegram is restricted in your region)
+
 4. Run the bot locally.
 
 # Version 2: Deployed on Vercel
