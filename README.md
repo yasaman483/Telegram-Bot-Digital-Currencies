@@ -17,7 +17,7 @@ pip install -r requirements.txt
 BOT_TOKEN=your_telegram_bot_token  
 PROXY=your_proxy_if_needed
 ```   
-# Notes:
+Note:
 If you are using a proxy, it helps the bot to connect to Telegram servers more reliably (specially if Telegram is restricted in your region)
 4. Run the bot locally.
 
